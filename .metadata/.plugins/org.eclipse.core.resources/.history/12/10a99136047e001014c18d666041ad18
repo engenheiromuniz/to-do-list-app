@@ -1,0 +1,5 @@
+package com.mztec.to_do_list_app.model;
+
+public class Task {
+
+}
