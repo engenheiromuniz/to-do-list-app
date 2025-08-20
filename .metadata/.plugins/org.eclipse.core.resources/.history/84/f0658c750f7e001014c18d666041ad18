@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${task.id == null ? 'Add New Task' : 'Edit Task'}"></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+    <div class="form-container">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center" th:text="${task.id == null ? 'Add New Task' : 'Edit Task'}"></h1>
+
+        <form th:action="${task.id == null ? '/tasks/save' : '/tasks/update/' + task.id}" th:object="${task}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" th:field="*{title}" required class="form-input" />
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="form-label">Description</label>
+                <textarea id="description" th:field="*{description}" class="form-textarea"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" id="startDate" th:field="*{startDate}" class="form-input" />
+            </div>
+
+            <div class="form-group">
+                <label for="dueDate" class="form-label">Due Date</label>
+                <input type="date" id="dueDate" th:field="*{dueDate}" class="form-input" />
+            </div>
+
+            <div class="form-group">
+                <label for="priority" class="form-label">Priority</label>
+                <select id="priority" th:field="*{priority}" class="form-select">
+                    <option value="">Select Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="status" class="form-label">Status</label>
+                <select id="status" th:field="*{status}" class="form-select">
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tags" class="form-label">Tags (comma-separated)</label>
+                <input type="text" id="tags" th:field="*{tags}" class="form-input" />
+            </div>
+
+            <div class="flex items-center justify-between mt-6">
+                <button type="submit" class="form-button">
+                    <span th:text="${task.id == null ? 'Add Task' : 'Update Task'}"></span>
+                </button>
+                <a th:href="@{/tasks}" class="back-button">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

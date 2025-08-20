@@ -1,0 +1,28 @@
+body {
+    font-family: 'Inter', sans-serif;
+    @apply bg-slate-50 flex items-center justify-center min-h-screen p-4;
+}
+
+.form-container {
+    @apply bg-white p-8 sm:p-10 rounded-xl shadow-2xl w-full max-w-lg transform transition-all duration-300;
+}
+
+.form-group {
+    @apply mb-5;
+}
+
+.form-label {
+    @apply block text-slate-800 text-sm font-semibold mb-2;
+}
+
+.form-input, .form-select, .form-textarea {
+    @apply shadow-sm border border-slate-300 rounded-lg w-full py-2.5 px-4 text-slate-700 leading-tight transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400;
+}
+
+.form-button {
+    @apply bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200 ease-in-out;
+}
+
+.back-button {
+    @apply bg-slate-400 hover:bg-slate-500 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400 transition-colors duration-200 ease-in-out;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${task.id == null ? 'Add New Task' : 'Edit Task'}"></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center font-sans">
+
+    <div class="bg-white p-8 sm:p-10 rounded-xl shadow-2xl w-full max-w-lg mx-auto">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center" th:text="${task.id == null ? 'Add New Task' : 'Edit Task'}"></h1>
+
+        <form th:action="${task.id == null ? '/tasks/save' : '/tasks/update/' + task.id}" th:object="${task}" method="post">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="mb-5">
+                <label for="title" class="block text-gray-700 text-sm font-semibold mb-2">Title</label>
+                <input type="text" id="title" th:field="*{title}" required class="shadow-sm border border-gray-300 rounded-lg w-full py-2.5 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+
+            <div class="mb-5">
+                <label for="description" class="block text-gray-700 text-sm font-semibold mb-2">Description</label>
+                <textarea id="description" th:field="*{description}" class="shadow-sm border border-gray-300 rounded-lg w-full py-2.5 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+
+            <div class="mb-5">
+                <label for="startDate" class="block text-gray-700 text-sm font-semibold mb-2">Start Date</label>
+                <input type="date" id="startDate" th:field="*{startDate}" class="shadow-sm border border-gray-300 rounded-lg w-full py-2.5 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+
+            <div class="mb-5">
+                <label for="dueDate" class="block text-gray-700 text-sm font-semibold mb-2">Due Date</label>
+                <input type="date" id="dueDate" th:field="*{dueDate}" class="shadow-sm border border-gray-300 rounded-lg w-full py-2.5 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+
+            <div class="mb-5">
+                <label for="priority" class="block text-gray-700 text-sm font-semibold mb-2">Priority</label>
+                <select id="priority" th:field="*{priority}" class="shadow-sm border border-gray-300 rounded-lg w-full py-2.5 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">Select Priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+
+            <div class="mb-5">
+                <label for="status" class="block text-gray-700 text-sm font-semibold mb-2">Status</label>
+                <select id="status" th:field="*{status}" class="shadow-sm border border-gray-300 rounded-lg w-full py-2.5 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <div class="mb-5">
+                <label for="tags" class="block text-gray-700 text-sm font-semibold mb-2">Tags (comma-separated)</label>
+                <input type="text" id="tags" th:field="*{tags}" class="shadow-sm border border-gray-300 rounded-lg w-full py-2.5 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+
+            <div class="flex items-center justify-between mt-6">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 ease-in-out">
+                    <span th:text="${task.id == null ? 'Add Task' : 'Update Task'}"></span>
+                </button>
+                <a th:href="@{/tasks}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2.5 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition-colors duration-200 ease-in-out">Cancel</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

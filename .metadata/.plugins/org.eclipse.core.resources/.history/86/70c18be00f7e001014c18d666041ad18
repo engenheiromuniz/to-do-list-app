@@ -1,0 +1,16 @@
+body {
+    font-family: 'Inter', sans-serif;
+    @apply bg-gray-100;
+}
+.task-card {
+    @apply bg-white p-4 rounded-lg shadow-md mb-4 flex items-center justify-between;
+}
+.task-actions {
+    @apply flex space-x-2;
+}
+.edit-icon, .delete-icon {
+    @apply w-5 h-5; /* Adjust icon size as needed */
+}
+.completed-task .task-title {
+    @apply line-through text-gray-500;
+}
